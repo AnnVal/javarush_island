@@ -25,21 +25,21 @@ public class InfoTables {
     }
     static
     {
-        FoodTable.put("Bear",new HashMap());
-        FoodTable.put("Boa",new HashMap());
-        FoodTable.put("Eagle",new HashMap());
-        FoodTable.put("Fox",new HashMap());
-        FoodTable.put("Wolf",new HashMap());
-        FoodTable.put("Boar",new HashMap());
-        FoodTable.put("Buffalo",new HashMap());
-        FoodTable.put("Caterpillar",new HashMap());
-        FoodTable.put("Deer",new HashMap());
-        FoodTable.put("Duck",new HashMap());
-        FoodTable.put("Goat",new HashMap());
-        FoodTable.put("Horse",new HashMap());
-        FoodTable.put("Mouse",new HashMap());
-        FoodTable.put("Rabbit",new HashMap());
-        FoodTable.put("Sheep",new HashMap());
+        FoodTable.put("Bear",new HashMap<>());
+        FoodTable.put("Boa",new HashMap<>());
+        FoodTable.put("Eagle",new HashMap<>());
+        FoodTable.put("Fox",new HashMap<>());
+        FoodTable.put("Wolf",new HashMap<>());
+        FoodTable.put("Boar",new HashMap<>());
+        FoodTable.put("Buffalo",new HashMap<>());
+        FoodTable.put("Caterpillar",new HashMap<>());
+        FoodTable.put("Deer",new HashMap<>());
+        FoodTable.put("Duck",new HashMap<>());
+        FoodTable.put("Goat",new HashMap<>());
+        FoodTable.put("Horse",new HashMap<>());
+        FoodTable.put("Mouse",new HashMap<>());
+        FoodTable.put("Rabbit",new HashMap<>());
+        FoodTable.put("Sheep",new HashMap<>());
 
         FoodTable.get("Wolf").put("Horse",10);
         FoodTable.get("Wolf").put("Deer",15);
