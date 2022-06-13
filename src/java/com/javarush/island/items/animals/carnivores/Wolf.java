@@ -1,7 +1,9 @@
 package com.javarush.island.items.animals.carnivores;
 
+import com.javarush.island.Cell;
+
 public class Wolf extends Carnivore{
- public Wolf(){
-   //  super(50,30,3,8);
+ public Wolf(int x, int y, Cell[][] field) {
+  super(x, y, field);
  }
 }

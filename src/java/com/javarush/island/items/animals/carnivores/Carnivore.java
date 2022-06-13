@@ -1,9 +1,13 @@
 package com.javarush.island.items.animals.carnivores;
 
+import com.javarush.island.Cell;
 import com.javarush.island.items.animals.Animal;
 
-public class Carnivore extends Animal {
+public abstract class Carnivore extends Animal {
+    public Carnivore(int x, int y, Cell[][] field) {
 
-     //   super(weigth, maxAmountOnCell, maxSpeed, foodAmountTillSaturation);
+        super(x, y, field);
+    }
+
 
 }

@@ -1,7 +1,9 @@
 package com.javarush.island.items.animals.herbivores;
 
+import com.javarush.island.Cell;
+
 public class Boar extends Herbivore{
-public Boar(){
-  //  super(400,50,2,50);
-}
+    public Boar(int x, int y, Cell[][] field) {
+        super(x, y,field);
+    }
 }

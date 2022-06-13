@@ -1,7 +1,9 @@
 package com.javarush.island.items.animals.carnivores;
 
+import com.javarush.island.Cell;
+
 public class Boa extends Carnivore{
-    public Boa(){
-     //   super(15,30,1,3);
+    public Boa(int x, int y, Cell[][] field) {
+        super(x, y, field);
     }
 }

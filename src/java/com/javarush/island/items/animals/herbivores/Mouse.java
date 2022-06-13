@@ -1,7 +1,12 @@
 package com.javarush.island.items.animals.herbivores;
 
-public class Mouse extends Herbivore{
+import com.javarush.island.Cell;
 
-      //  super(0.05,500,1,0.01);
+public class Mouse extends Herbivore{
+    public Mouse(int x, int y, Cell[][] field) {
+        super(x, y,field);
+    }
+
+
 
 }

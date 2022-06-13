@@ -1,4 +1,4 @@
-package guidebook;
+package com.javarush.island.guidebook;
 
 public class AnimalsCharacteristics {
     public final double WEIGHT;
