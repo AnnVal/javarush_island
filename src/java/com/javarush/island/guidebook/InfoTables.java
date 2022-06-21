@@ -1,16 +1,17 @@
 package com.javarush.island.guidebook;
 
 import com.javarush.island.items.animals.Animal;
+import com.javarush.island.items.animals.carnivores.*;
+import com.javarush.island.items.animals.herbivores.*;
 import com.javarush.island.items.plants.Plant;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class InfoTables {
     private static Map<String, AnimalsCharacteristics> AnimalsCharacteristicsTable = new HashMap<>();
     private static Map<String, PlantsCharacteristics> PlantsCharacteristicsTable = new HashMap<>();
     private static Map<String, Map<String, Integer>> FoodTable = new HashMap<>();
+    private static List<Class<? extends Animal>> possibleInhabitants = new ArrayList<>();
 
     public static double getWeight(Class<? extends Animal> animal) {
         return AnimalsCharacteristicsTable.get(animal.getSimpleName()).WEIGHT;
@@ -42,6 +43,14 @@ public class InfoTables {
 
     public static int getPlantsMaxAmountOnCell(Class<? extends Plant>plant) {
         return PlantsCharacteristicsTable.get(plant.getSimpleName()).MAX_AMOUNT_ON_CELL;
+    }
+
+    public static Set<String> getAnimalNames(){
+        return AnimalsCharacteristicsTable.keySet();
+    }
+
+    public static List<Class<? extends Animal>> getPossibleInhabitants(){
+        return possibleInhabitants;
     }
 
 
@@ -126,6 +135,25 @@ public class InfoTables {
         FoodTable.get("Mouse").put("Caterpillar", 90);
 
         FoodTable.get("Duck").put("Caterpillar", 90);
+
+    }
+
+    static {
+        possibleInhabitants.add(Bear.class);
+        possibleInhabitants.add(Boa.class);
+        possibleInhabitants.add(Eagle.class);
+        possibleInhabitants.add(Fox.class);
+        possibleInhabitants.add(Wolf.class);
+        possibleInhabitants.add(Boar.class);
+        possibleInhabitants.add(Buffalo.class);
+        possibleInhabitants.add(Caterpillar.class);
+        possibleInhabitants.add(Deer.class);
+        possibleInhabitants.add(Duck.class);
+        possibleInhabitants.add(Goat.class);
+        possibleInhabitants.add(Horse.class);
+        possibleInhabitants.add(Mouse.class);
+        possibleInhabitants.add(Rabbit.class);
+        possibleInhabitants.add(Sheep.class);
 
     }
 }

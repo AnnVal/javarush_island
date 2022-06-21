@@ -1,5 +1,6 @@
 package com.javarush.island;
 
+import com.javarush.island.guidebook.InfoTables;
 import com.javarush.island.items.animals.Animal;
 import com.javarush.island.items.plants.Plant;
 
@@ -74,7 +75,7 @@ public class Cell {
 
     private String animalsOnCellAsString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Class<? extends Animal> clazz : Island.possibleInhabitants) {
+        for (Class<? extends Animal> clazz : InfoTables.getPossibleInhabitants()) {
             stringBuilder.append(clazz.getSimpleName() + " " + getAnimalCountByClass(clazz) + "\n");
         }
         return stringBuilder.toString();
