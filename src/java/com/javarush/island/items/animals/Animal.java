@@ -159,7 +159,7 @@ public abstract class Animal extends Item {
         int newX = this.x + this.direction.dx * stepsNumber;
         int newY = this.y + this.direction.dy * stepsNumber;
         boolean canMove = false;
-        canMove = (newX >= 0 && newX < Island.getFieldWidth()) && (newY >= 0 && newY < Island.getFieldHeight());
+        canMove = (newX >= 0 && newX < field[0].length) && (newY >= 0 && newY < field.length);
         if (canMove)
             canMove &= isCellFreeForThisAnimal(newX, newY);
 

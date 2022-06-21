@@ -16,23 +16,25 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Island {
-    private static final int FIELD_HEIGHT = 20;
-    private static final int FIELD_WIDTH = 20;
+    private int fieldHeight = 20;
+    private  int fieldWidth= 20;
     private Cell[][] field;
     private StatisticsCounter statisticsCounter;
 
 
     public Island() {
-        field = new Cell[FIELD_HEIGHT][FIELD_WIDTH];
+        field = new Cell[fieldHeight][fieldWidth];
         statisticsCounter = new StatisticsCounter();
-        for (int i = 0; i < FIELD_HEIGHT; i++) {
-            for (int j = 0; j < FIELD_WIDTH; j++) {
+        for (int i = 0; i < fieldHeight; i++) {
+            for (int j = 0; j < fieldWidth; j++) {
                 field[i][j] = new Cell(j, i);
                 growPlants(i, j);
                 initializeAnimals(i, j);
             }
         }
     }
+
+
 
     private void growPlants(int i, int j) {
         int plantAmount = ThreadLocalRandom.current().nextInt(InfoTables.getPlantsMaxAmountOnCell(Plant.class));
@@ -55,32 +57,38 @@ public class Island {
         }
     }
 
-    public Cell[][] getField() {
-        return field;
+
+
+    public int getFieldHeight() {
+        return fieldHeight;
     }
 
-    public static int getFieldHeight() {
-        return FIELD_HEIGHT;
+    public int getFieldWidth() {
+        return fieldWidth;
     }
 
-    public static int getFieldWidth() {
-        return FIELD_WIDTH;
+    public  void setFieldHeight(int fieldHeight) {
+        this.fieldHeight = fieldHeight;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Date());
-        Island island = new Island();
+    public void setFieldWidth(int fieldWidth) {
+        this.fieldWidth = fieldWidth;
+    }
+
+    public  void watchLifeOnIsland() {
+
+
 
         Runnable plantGrowingTask = () -> {
-            for (int i = 0; i < FIELD_HEIGHT; i++) {
-                for (int j = 0; j < FIELD_WIDTH; j++)
-                    island.growPlants(i, j);
+            for (int i = 0; i < this.fieldHeight; i++) {
+                for (int j = 0; j < this.fieldWidth; j++)
+                    this.growPlants(i, j);
             }
         };
         Runnable animalsActionTask = () -> {
-            for (int i = 0; i < FIELD_HEIGHT; i++) {
-                for (int j = 0; j < FIELD_WIDTH; j++) {
-                    for (Animal animal : island.field[i][j].getAnimalsOnCell())
+            for (int i = 0; i < this.fieldHeight; i++) {
+                for (int j = 0; j < this.fieldHeight; j++) {
+                    for (Animal animal : this.field[i][j].getAnimalsOnCell())
                         animal.performAction();
                 }
             }
@@ -88,16 +96,16 @@ public class Island {
 
         Runnable statisticsTask = () -> {
             System.out.println("______________");
-            System.out.println("have born: " + island.statisticsCounter.birthCounter.get());
-            System.out.println("died: " + island.statisticsCounter.deathCounter.get());
-            System.out.println("eaten plants " + island.statisticsCounter.eatenPlantsCounter.get());
-            System.out.println("born animals: " + island.statisticsCounter.bornAnimals);
-            System.out.println("eaten animals: " + island.statisticsCounter.eatenAnimals);
-            System.out.println("died animals: " + island.statisticsCounter.deadAnimals);
-            island.statisticsCounter.clear();
+            System.out.println("have born: " + this.statisticsCounter.birthCounter.get());
+            System.out.println("died: " + this.statisticsCounter.deathCounter.get());
+            System.out.println("eaten plants " + this.statisticsCounter.eatenPlantsCounter.get());
+            System.out.println("born animals: " + this.statisticsCounter.bornAnimals);
+            System.out.println("eaten animals: " + this.statisticsCounter.eatenAnimals);
+            System.out.println("died animals: " + this.statisticsCounter.deadAnimals);
+            this.statisticsCounter.clear();
         };
 
-       /* ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3);
+       ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3);
         scheduledExecutorService.scheduleAtFixedRate(plantGrowingTask, 0, 60, TimeUnit.SECONDS);
         scheduledExecutorService.scheduleAtFixedRate(animalsActionTask, 10, 60, TimeUnit.SECONDS);
         scheduledExecutorService.scheduleAtFixedRate(statisticsTask, 20, 60, TimeUnit.SECONDS);
@@ -107,24 +115,11 @@ public class Island {
             System.out.println("Interrupted exception in maim while sleeping");
         }
         scheduledExecutorService.shutdown();
-*/
 
-        for (int i = 0; i < FIELD_HEIGHT; i++) {
-            for (int j = 0; j < FIELD_WIDTH; j++) {
-                for (Animal animal : island.field[i][j].getAnimalsOnCell()) {
-                    animal.performAction();
-                }
-            }
-        }
 
-        System.out.println("______________");
-        System.out.println("have born: " + island.statisticsCounter.birthCounter.get());
-        System.out.println("died: " + island.statisticsCounter.deathCounter.get());
-        System.out.println("eaten plants " + island.statisticsCounter.eatenPlantsCounter.get());
-        System.out.println("born animals: " + island.statisticsCounter.bornAnimals);
-        System.out.println("eaten animals: " + island.statisticsCounter.eatenAnimals);
-        System.out.println("died animals: " + island.statisticsCounter.deadAnimals);
-        System.out.println(new Date());
+
 
     }
+
+
 }
