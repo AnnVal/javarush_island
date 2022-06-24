@@ -13,7 +13,8 @@ public class Cell {
     private int y;
     private List<Animal> animalsOnCell;
     private List<Plant> plantsOnCell;
-
+    // как показала практика, очень медленное решение =( но если ставить Lock на оттельных животных,
+    // то сталкиваешься с ConcurrentModificationException при обходе коллекций
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
@@ -48,7 +49,7 @@ public class Cell {
     }
 
     public int getAnimalCount(Animal animal) {
-        Class clazz = animal.getClass();
+        Class<? extends Animal> clazz = animal.getClass();
 
 
         return getAnimalCountByClass(clazz);

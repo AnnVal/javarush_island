@@ -29,9 +29,9 @@ public abstract class Animal extends Item {
         direction = Direction.RIGHT;
         saturation = InfoTables.getFoodAmountTillSaturation(this.getClass()) == 0 ? 0 :
                 ThreadLocalRandom.current().nextDouble(InfoTables.getFoodAmountTillSaturation(this.getClass()));
-
     }
-
+    //метод, отрадающий поведение каждого отделього животного. самое простое:ест, если голодное и
+    // либо гуляет, либо размножается с вероятностью 50%
     public void performAction() {
         getHungry();
         if (isAnimalHungry())
@@ -47,7 +47,7 @@ public abstract class Animal extends Item {
     private void reproduce() {
         if (isReadyForReproducing()) {
             try {
-                Constructor constructor = this.getClass().getConstructor(int.class, int.class,Cell[][].class,StatisticsCounter.class);
+                Constructor<? extends Item> constructor = this.getClass().getConstructor(int.class, int.class,Cell[][].class,StatisticsCounter.class);
                 Animal newborn = (Animal) constructor.newInstance(x, y,field,statisticsCounter);
                 field[y][x].getAnimalsOnCell().add(newborn);
                 statisticsCounter.birthCounter.getAndIncrement();
@@ -170,14 +170,14 @@ public abstract class Animal extends Item {
     private boolean isCellFreeForThisAnimal(int newX, int newY) {
         return field[newY][newX].getAnimalCount(this) < InfoTables.getMaxAmountOnCell(this.getClass());
     }
-
+ //условное считаем, что животное голодное, когда насыщение 50% от максимально возможного
     private boolean isAnimalHungry() {
         if (this.saturation < 0.5 * InfoTables.getFoodAmountTillSaturation(this.getClass()))
             return true;
         else
             return false;
     }
-
+    // с каждым "днем" животное теряет 0.25 от максимума единиц сытости
     private void getHungry() {
         saturation -= 0.25 * InfoTables.getFoodAmountTillSaturation(this.getClass());
     }
